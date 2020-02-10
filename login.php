@@ -1,80 +1,42 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Log in</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<?php
+include 'config.php';  
+session_start();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $loginURL = 'login.html';
+  if (isset($_POST['user']))  {
+    $username = $_POST["user"];
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="dist/css/ionic.min.css">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-</head>
-<body class="hold-transition login-page">
-<div class="login-box">
-  <div class="login-logo">
-    <a href="#"><b>Quản Lý</b> Spa</a>
-  </div>
-  <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body">
-      <p class="login-box-msg">Đăng nhập để tiếp tục</p>
-
-      <form action="../../index3.html" method="post">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Tên Đăng Nhập">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Mật khẩu">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="remember">
-              <label for="remember">
-                Duy trì đăng nhập
-              </label>
-            </div>
-          </div>
-          <!-- /.col -->
-          <div class="col-6">
-            <button type="submit" class="btn btn-primary btn-block">Đăng Nhập</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
-       <p class="mb-1">
-        <a href="forgot-password.html">Quên mật khẩu</a>
-      </p>
-    </div>
-    <!-- /.login-card-body -->
-  </div>
-</div>
-<!-- /.login-box -->
-
-<!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
-
-</body>
-</html>
+  } else {
+      header('Location: '.$loginURL);
+  } 
+  if (isset($_POST['pass']))  {
+    $pass = $_POST["pass"];
+  } else {
+      header('Location: '.$loginURL);
+  }
+  
+  $conn = mysql_connect($mysqlserver, $mysqluser, $mysqlpass);
+  mysql_select_db($mysqldb, $conn);
+  if (!$conn) {
+    die("Connection failed: "  . mysql_error());
+  }
+  mysql_query("set names 'utf8'");
+  $query = sprintf("SELECT `id`, `username`, `pass`, `name`, `img`, `roleid`, `spaid` FROM `user` WHERE `username`='%s'",mysql_real_escape_string($username));
+  $result = mysql_query($query,$conn);
+  $returnkq = false;
+  $session = null;
+   while($row = mysql_fetch_assoc($result)){
+      if(strcmp($pass,$row["pass"])==0){
+        $session = $row;
+        $returnkq = true;
+      }
+   }
+  if($returnkq){
+    $_SESSION['user'] = $session;
+    $droadLink = 'index.php';
+    header('Location: '.$droadLink);
+  } else {
+      header('Location: '.$loginURL);
+  }
+}
+?>

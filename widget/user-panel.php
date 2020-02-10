@@ -3,6 +3,6 @@
           <img src="dist/img/user7-128x128.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Mai Nguyễn</a>
+          <a href="#" class="d-block"><?php echo($user['name']);?></a>
         </div>
 </div>

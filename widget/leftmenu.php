@@ -2,6 +2,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+          <?php
+          if($user['roleid']==$managerrole){ ?>
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt text-info"></i>
@@ -32,6 +34,7 @@
               </li>
             </ul>
           </li>
+         <?php }?>
           <!-- Khách hàng -->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -50,7 +53,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./list-customer.html" class="nav-link">
+                <a href="./list-customer.php" class="nav-link">
                   <i class="far fa-plus-square nav-icon text-warning"></i>
                   <p>Danh sách khách hàng</p>
                 </a>
