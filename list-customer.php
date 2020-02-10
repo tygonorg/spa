@@ -101,7 +101,7 @@
                                 <ul class="pagination">
                                     <li class="paginate_button page-item previous" id="example2_previous"><a href="#"
                                             aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">
-                                            <<< /a>
+                                            Lùi</a>
                                     </li>
                                     <li class="paginate_button page-item active"><a href="#" aria-controls="example2"
                                             data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
@@ -117,7 +117,7 @@
                                             data-dt-idx="6" tabindex="0" class="page-link">6</a></li>
                                     <li class="paginate_button page-item next disabled" id="example2_next"><a href="#"
                                             aria-controls="example2" data-dt-idx="7" tabindex="0"
-                                            class="page-link">>></a></li>
+                                            class="page-link">Tiến</a></li>
                                 </ul>
                             </div>
                         </div>
