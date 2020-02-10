@@ -47,13 +47,15 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Danh sách khách hàng hiện có</h3>
-
                 <div class="card-tools">
                   <div class="input-group input-group-sm">
                     <input type="text" name="table_search" class="form-control float-right" placeholder="Tìm kiếm">
 
                     <div class="input-group-append">
                       <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="input-group-append">
+                      <a href="addnew-customer.php" class="btn btn-default"><i class="fas fa-plus-square text-warning"></i> Thêm mới khách hàng</a>
                     </div>
                   </div>
                 </div>
