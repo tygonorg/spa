@@ -128,8 +128,8 @@
 
 .select2-container--default .select2-results__option {
   padding: 6px 12px;
-  user-select: none;
-  -webkit-user-select: none;
+  user-select: auto;
+  -webkit-user-select: auto;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -2202,7 +2202,7 @@
   position: absolute;
   text-align: center;
   top: 0;
-  user-select: none;
+  user-select: auto;
   width: 16px;
 }
 
@@ -5863,7 +5863,7 @@
   position: relative;
   text-align: left;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  user-select: none;
+  user-select: auto;
   vertical-align: middle;
   z-index: 0;
 }

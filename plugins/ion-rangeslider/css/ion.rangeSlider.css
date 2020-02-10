@@ -7,11 +7,11 @@ Build date: 2018-12-11 23:23:51
   position: relative;
   display: block;
   -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  -webkit-user-select: auto;
+  -khtml-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
   font-size: 12px;
   font-family: Arial, sans-serif;
 }

@@ -3,10 +3,10 @@
   -webkit-pointer-events: none;
   pointer-events: none;
 
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-      user-select: none;
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+      user-select: auto;
   color: #ffffff;
 }
 

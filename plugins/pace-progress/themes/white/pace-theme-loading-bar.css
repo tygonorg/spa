@@ -3,9 +3,9 @@
   -webkit-pointer-events: none;
   pointer-events: none;
 
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  user-select: auto;
 
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;

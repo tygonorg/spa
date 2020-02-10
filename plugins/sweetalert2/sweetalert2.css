@@ -308,10 +308,10 @@
   background-color: transparent !important;
   color: transparent;
   cursor: default;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -webkit-user-select: auto;
+     -moz-user-select: auto;
+      -ms-user-select: auto;
+          user-select: auto;
 }
 .swal2-actions.swal2-loading .swal2-styled.swal2-cancel {
   margin-right: 30px;
@@ -583,10 +583,10 @@
   font-family: inherit;
   line-height: 5em;
   cursor: default;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -webkit-user-select: auto;
+     -moz-user-select: auto;
+      -ms-user-select: auto;
+          user-select: auto;
 }
 .swal2-icon::before {
   display: flex;
