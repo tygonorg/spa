@@ -72,17 +72,70 @@
                                                 <th>Số điện thoại</th>
                                                 <th>Ngày Sinh</th>
                                                 <th>Ghi chú</th>
+                                                <th>Đang sử dụng</th>
+                                                <th></th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php
+                            $number_page = 20;
+                            if (isset($_GET['page'])) {
+                                $pages = $_GET['page'];
+                            } else {
+                                $pages = 0;
+                            }
+                            $start = $number_page * $pages;
+                            $sql = "SELECT `id`, `name`, `phone`, `note`, DATE_FORMAT(`birthday`, '%d/%m/%Y') as `birth`, `spaid` FROM `customer` WHERE `spaid` =".$spa['id']." limit $start,$number_page";
+                            $sqlcount = "SELECT COUNT(*) AS `c` FROM `customer` WHERE `spaid` =".$spa['id']." ORDER BY `id` DESC";
+                            $connect = mysql_connect($mysqlserver, $mysqluser, $mysqlpass);
+                            mysql_select_db($mysqldb, $connect);
+                            mysql_query("set names 'utf8'");
+                            $result = mysql_query($sql, $connect);
+                            $result1 = mysql_query($sqlcount, $connect);
+                            $row1 = mysql_fetch_assoc($result1);
+                            $totalrows = $row1['c'];
+                            $stt = $start;
+                            while ($row = mysql_fetch_assoc($result)) {
+                              $stt = $stt + 1;
+                            ?>
                                             <tr>
-                                                <td>183</td>
-                                                <td>John Doe</td>
-                                                <td>11-7-2014</td>
-                                                <td><span class="tag tag-success">Approved</span></td>
-                                                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback
-                                                    doner.</td>
+                                                <td><?php echo $stt; ?></td>
+                                                <td><?php echo $row['name']; ?></td>
+                                                <td><?php echo $row['phone']; ?></td>
+                                                <td><?php echo $row['birth']; ?></td>
+                                                <td><?php echo $row['note']; ?></td>
+                                                <td><span class="badge bg-danger">2</span></td>
+                                                <td class="project_progress">
+                                                    <div class="progress progress-sm">
+                                                        <div class="progress-bar bg-green" role="progressbar"
+                                                            aria-volumenow="77" aria-volumemin="0" aria-volumemax="100"
+                                                            style="width: 77%">
+                                                        </div>
+                                                    </div>
+                                                    <small>
+                                                        77% Complete
+                                                    </small>
+                                                </td>
+                                                <td class="project-actions text-right">
+                                                    <a class="btn btn-primary btn-sm" href="#">
+                                                        <i class="fas fa-folder">
+                                                        </i>
+                                                        Xem
+                                                    </a>
+                                                    <a class="btn btn-info btn-sm" href="#">
+                                                        <i class="fas fa-pencil-alt">
+                                                        </i>
+                                                        Sửa
+                                                    </a>
+                                                    <a class="btn btn-danger btn-sm" href="#">
+                                                        <i class="fas fa-trash">
+                                                        </i>
+                                                        Xóa
+                                                    </a>
+                                                </td>
                                             </tr>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -94,30 +147,27 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-5">
                             <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Có tổng
-                                cộng 120 khách hàng</div>
+                                cộng <?php echo $totalrows; ?> khách hàng</div>
                         </div>
                         <div class="col-sm-12 col-md-7">
                             <div class="dataTables_paginate paging_simple_numbers">
                                 <ul class="pagination">
-                                    <li class="paginate_button page-item previous" id="example2_previous"><a href="#"
-                                            aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">
-                                            Lùi</a>
-                                    </li>
-                                    <li class="paginate_button page-item active"><a href="#" aria-controls="example2"
-                                            data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                    <li class="paginate_button page-item "><a href="#" aria-controls="example2"
-                                            data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-                                    <li class="paginate_button page-item "><a href="#" aria-controls="example2"
-                                            data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
-                                    <li class="paginate_button page-item "><a href="#" aria-controls="example2"
-                                            data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
-                                    <li class="paginate_button page-item "><a href="#" aria-controls="example2"
-                                            data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
-                                    <li class="paginate_button page-item"><a href="#" aria-controls="example2"
-                                            data-dt-idx="6" tabindex="0" class="page-link">6</a></li>
-                                    <li class="paginate_button page-item next disabled" id="example2_next"><a href="#"
-                                            aria-controls="example2" data-dt-idx="7" tabindex="0"
-                                            class="page-link">Tiến</a></li>
+                                    <?php
+                            if ($totalrows % $number_page > 0) {
+                                $total = round(($totalrows / $number_page), 0, PHP_ROUND_HALF_DOWN)  + 1;
+                            } else {
+                                $total = ($totalrows / $number_page);
+                            }
+
+                            if ($total > 1) {
+                                for ($i = 0; $i < $total; $i++) { ?>
+                                    <li class="paginate_button page-item<?php if ($i == $pages) {
+                                                                            echo 'active';
+                                                                        } ?>"><a
+                                            href="list-customer.php?page=<?php echo $i; ?>" aria-controls="dataTable"
+                                            class="page-link"><?php echo ($i + 1); ?></a></li>
+                                    <?php }
+                            } ?>
                                 </ul>
                             </div>
                         </div>
