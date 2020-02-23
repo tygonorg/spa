@@ -2,6 +2,32 @@
   $titles = 'Khách hàng';
   include('config.php');
   include('widget/header.php');
+ $cus_name = "";
+ $cus_phone = "";
+ $cus_birth = "01/01/1990";
+ $cus_note ="";
+
+$check_name = true;// check cus_name
+$check_name_mess = "";
+ if($_SERVER["REQUEST_METHOD"]=="POST"){
+    $cus_name = $_POST["cus_name"];
+    $cus_phone = $_POST["cus_phone"];
+    $cus_note = $_POST["cus_note"];
+    $cus_birth = $_POST["cus_birth"];
+    if($cus_name==""){
+        $checkname = false;
+        $check_name_mess = "Tên Khách hàng không được rỗng!";
+    }
+    if(strlen($cus_name)>50){
+        $checkname = false;
+        $check_name_mess = "Tên Khách hàng quá dài, tối đa 50 ký tự!";
+    }
+    if(strlen($cus_name)<5){
+        $checkname = false;
+        $check_name_mess = "Tên Khách hàng quá ngắn, phải hơn 5 ký tự!";
+    }
+}
+ 
 ?>
 
 <body class="hold-transition sidebar-mini">
@@ -49,14 +75,17 @@
                                         <!-- text input -->
                                         <div class="form-group">
                                             <label>Tên Khách hàng</label>
-                                            <input type="text" class="form-control" placeholder="Nhập tên khách hàng">
+                                            <input name="cus_name" type="text" class="form-control<?php if(!$check_name) echo 'is-invalid'; ?>" value="<?php echo($cus_name);?>" placeholder="Nhập tên khách hàng">
+                                            <?php if(!$check_name){ ?>
+                                            <span class="form-group text-danger error"><?php echo($check_name_mess); ?></span>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <!-- text input -->
                                         <div class="form-group">
                                             <label>Số điện thoại</label>
-                                            <input type="text" class="form-control" placeholder="Nhập số điện thoại">
+                                            <input name="cus_phone" type="text" class="form-control" value ="<?php echo($cus_phone); ?>" placeholder="Nhập số điện thoại">
                                         </div>
                                     </div>
                                 </div>
@@ -65,8 +94,8 @@
                                         <!-- textarea -->
                                         <div class="form-group">
                                             <label>Ghi Chú</label>
-                                            <textarea class="form-control" rows="3"
-                                                placeholder="Nhập ghi chú về khách hàng"></textarea>
+                                            <textarea name="cus_note" class="form-control" rows="3"
+                                                placeholder="Nhập ghi chú về khách hàng"><?php echo($cus_note); ?></textarea>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -78,8 +107,9 @@
                                                     <span class="input-group-text"><i
                                                             class="far fa-calendar-alt"></i></span>
                                                 </div>
-                                                <input type="text" class="form-control" data-inputmask-alias="datetime"
+                                                <input type="text" name="cus_birth" class="form-control" data-inputmask-alias="datetime"
                                                     data-inputmask-inputformat="dd/mm/yyyy" data-mask=""
+                                                    value="<?php echo($cus_birth); ?>"
                                                     im-insert="false">
                                             </div>
                                         </div>
