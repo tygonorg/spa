@@ -139,15 +139,24 @@ include('widget/header.php');
                         <div class="col-lg-6">
                             <div class="card">
                                 <div class="card-header border-1">
+                                    <?php
+                                    $sql = "SELECT `id`, `name`, `phone`, `note`, DATE_FORMAT(`birthday`, '%d/%m/%Y') as `birth`, `spaid` FROM `customer` WHERE `spaid` =" . $spa['id'] . " AND DATE_FORMAT(`birthday`, '%m-%d') = DATE_FORMAT(NOW(), '%m-%d')";
+                                    $connect = mysql_connect($mysqlserver, $mysqluser, $mysqlpass);
+                                    mysql_select_db($mysqldb, $connect);
+                                    mysql_query("set names 'utf8'");
+                                    $result = mysql_query($sql, $connect);
+                                    $num_rows = mysql_num_rows($result);
+                                    ?>
                                     <div class="d-flex justify-content-between">
-                                        <h3 class="card-title">Danh sách khách hàng<span class="badge bg-danger">sinh nhật hôm nay</span></h3>
+                                        <h3 class="card-title"><i class="fa fa-birthday-cake" aria-hidden="true"></i><strong> Sinh nhật hôm nay </strong><span class="badge bg-danger"><?php echo ($num_rows); ?></span></h3>
                                         <a href="list-customer.php">Xem danh sách khách hàng</a>
                                     </div>
                                 </div>
                                 <div class="card-body table-responsive p-1">
-                                <table class="table table-striped table-valign-middle">
+                                    <table class="table table-striped table-valign-middle">
                                         <thead>
                                             <tr>
+                                                <th>STT</th>
                                                 <th>Tên Khách hàng</th>
                                                 <th>Ngày sinh</th>
                                                 <th>Điện thoại</th>
@@ -155,42 +164,45 @@ include('widget/header.php');
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
-                                                    Some Product
-                                                </td>
-                                                <td>$13 USD</td>
-                                                <td>
-                                                    <small class="text-success mr-1">
-                                                        <i class="fas fa-arrow-up"></i>
-                                                        12%
-                                                    </small>
-                                                    12,000 Sold
-                                                </td>
-                                                <td>
-                                                    <a href="#" class="text-muted">
-                                                        <i class="fas fa-search"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                            <?php
+                                            $stt = 0;
+                                            while ($row = mysql_fetch_assoc($result)) {
+                                                $stt++;
+                                            ?>
+                                                <tr>
+                                                    <td><?php echo ($stt); ?></td>
+                                                    <td><?php echo ($row['name']); ?></td>
+                                                    <td><?php echo ($row['birth']); ?></td>
+                                                    <td><?php echo ($row['phone']); ?></td>
+                                                    <td><?php echo ($row['note']); ?></td>
+                                                </tr>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6">
-                        <div class="card">
+                            <div class="card">
                                 <div class="card-header border-1">
                                     <div class="d-flex justify-content-between">
-                                        <h3 class="card-title">Danh sách khách hàng<span class="badge bg-warning">Sắp sinh nhật</span></h3>
+                                        <?php
+                                        $sql = "SELECT `id`, `name`, `phone`, `note`, DATE_FORMAT(`birthday`, '%d/%m/%Y') as `birth`, `spaid` FROM `customer` WHERE `spaid` =1 AND DATE_FORMAT(`birthday`, '%m-%d') > DATE_FORMAT(NOW(), '%m-%d') and DATE_FORMAT(`birthday`, '%m-%d') <= DATE_FORMAT((NOW() + INTERVAL +14 DAY), '%m-%d')";
+                                        $connect = mysql_connect($mysqlserver, $mysqluser, $mysqlpass);
+                                        mysql_select_db($mysqldb, $connect);
+                                        mysql_query("set names 'utf8'");
+                                        $result = mysql_query($sql, $connect);
+                                        $num_rows = mysql_num_rows($result);
+                                        ?>
+                                        <h3 class="card-title"><i class="fas fa-calendar-alt"></i><strong> Khách hàng sắp sinh nhật </strong><span class="badge bg-warning"><?php echo ($num_rows); ?></span></h3>
                                         <a href="list-customer.php">Xem danh sách khách hàng</a>
                                     </div>
                                 </div>
                                 <div class="card-body table-responsive p-1">
-                                <table class="table table-striped table-valign-middle">
+                                    <table class="table table-striped table-valign-middle">
                                         <thead>
                                             <tr>
+                                                <th>STT</th>
                                                 <th>Tên Khách hàng</th>
                                                 <th>Ngày sinh</th>
                                                 <th>Điện thoại</th>
@@ -198,25 +210,19 @@ include('widget/header.php');
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
-                                                    Some Product
-                                                </td>
-                                                <td>$13 USD</td>
-                                                <td>
-                                                    <small class="text-success mr-1">
-                                                        <i class="fas fa-arrow-up"></i>
-                                                        12%
-                                                    </small>
-                                                    12,000 Sold
-                                                </td>
-                                                <td>
-                                                    <a href="#" class="text-muted">
-                                                        <i class="fas fa-search"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                            <?php
+                                            $stt = 0;
+                                            while ($row = mysql_fetch_assoc($result)) {
+                                                $stt++;
+                                            ?>
+                                                <tr>
+                                                    <td><?php echo ($stt); ?></td>
+                                                    <td><?php echo ($row['name']); ?></td>
+                                                    <td><?php echo ($row['birth']); ?></td>
+                                                    <td><?php echo ($row['phone']); ?></td>
+                                                    <td><?php echo ($row['note']); ?></td>
+                                                </tr>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>

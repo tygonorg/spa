@@ -72,7 +72,6 @@ include('widget/header.php');
                                                 <th>Ghi chú</th>
                                                 <th>Sự kiện</th>
                                                 <th></th>
-                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -112,15 +111,7 @@ include('widget/header.php');
                                                             <span class="badge bg-success">Sắp sinh nhật</span>
                                                         <?php } ?>
                                                     </td>
-                                                    <td class="project_progress">
-                                                        <div class="progress progress-sm">
-                                                            <div class="progress-bar bg-green" role="progressbar" aria-volumenow="77" aria-volumemin="0" aria-volumemax="100" style="width: 77%">
-                                                            </div>
-                                                        </div>
-                                                        <small>
-                                                            77% Complete
-                                                        </small>
-                                                    </td>
+                                                    
                                                     <td class="project-actions text-right">
                                                         <a class="btn btn-primary btn-sm" href="#">
                                                             <i class="fas fa-folder">
