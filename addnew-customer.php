@@ -1,6 +1,7 @@
 <?php
   $titles = 'Khách hàng';
-  include('/widget/header.php');
+  include('config.php');
+  include('widget/header.php');
 ?>
 
 <body class="hold-transition sidebar-mini">
