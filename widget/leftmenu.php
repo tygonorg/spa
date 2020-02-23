@@ -21,13 +21,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Thống kê khách hàng</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Thống kê Hàng</p>
                 </a>
@@ -77,7 +77,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./list-customer.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-plus-square nav-icon text-warning"></i>
                   <p>Danh sách Dịch Vụ</p>
                 </a>
