@@ -36,7 +36,7 @@ endif;
     header('Location: ' . $newURL);
   }
   ?>
-  <title>Hệ Thống Quản Lý Spa - <?php echo ($spa['fullname']); ?></title>
+  <title>Hệ Thống Quản Lý Spa - <?php echo ($titles = 'Khách hàng'); ?></title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">

@@ -1,5 +1,5 @@
 <?php
-$titles = 'Khách hàng';
+$titles = 'Thêm mới Khách hàng';
 include('config.php');
 include('widget/header.php');
 include('lib/utility.php');

@@ -31,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $returnkq = true;
       }
    }
-   var_dump(($result));
   if($returnkq){
     $_SESSION['user'] = $session;
     $droadLink = 'index.php';
@@ -39,5 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
       header('Location: '.$loginURL);
   }
+} else {
+  $_SESSION['user'] = null;
 }
 ?>

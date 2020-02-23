@@ -1,7 +1,7 @@
 <?php
-  $titles = 'Thống kê';
-  include('config.php');
-  include('widget/header.php');
+$titles = 'Thống kê';
+include('config.php');
+include('widget/header.php');
 ?>
 
 <body class="hold-transition sidebar-mini">
@@ -10,12 +10,12 @@
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
             <?php
-      include('widget/menu.php');
-    ?>
+            include('widget/menu.php');
+            ?>
             <!-- SEARCH FORM -->
             <?php
-      include('widget/search-form.php');
-    ?>
+            include('widget/search-form.php');
+            ?>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
@@ -29,8 +29,7 @@
                         <a href="#" class="dropdown-item">
                             <!-- Message Start -->
                             <div class="media">
-                                <img src="dist/img/user1-128x128.jpg" alt="User Avatar"
-                                    class="img-size-50 mr-3 img-circle">
+                                <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         Brad Diesel
@@ -46,8 +45,7 @@
                         <a href="#" class="dropdown-item">
                             <!-- Message Start -->
                             <div class="media">
-                                <img src="dist/img/user8-128x128.jpg" alt="User Avatar"
-                                    class="img-size-50 img-circle mr-3">
+                                <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         John Pierce
@@ -63,13 +61,11 @@
                         <a href="#" class="dropdown-item">
                             <!-- Message Start -->
                             <div class="media">
-                                <img src="dist/img/user3-128x128.jpg" alt="User Avatar"
-                                    class="img-size-50 img-circle mr-3">
+                                <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         Nora Silvester
-                                        <span class="float-right text-sm text-warning"><i
-                                                class="fas fa-star"></i></span>
+                                        <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
                                     </h3>
                                     <p class="text-sm">The subject goes here</p>
                                     <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
@@ -109,8 +105,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
-                            class="fas fa-th-large"></i></a>
+                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i class="fas fa-th-large"></i></a>
                 </li>
             </ul>
         </nav>
@@ -124,12 +119,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Dashboard v3</h1>
+                            <h1 class="m-0 text-dark">Thống Kê</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Dashboard v3</li>
+                                <li class="breadcrumb-item"><a href="index.php">Trang Chủ</a></li>
+                                <li class="breadcrumb-item active">Thống kê</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -143,71 +138,26 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="card">
-                                <div class="card-header border-0">
+                                <div class="card-header border-1">
                                     <div class="d-flex justify-content-between">
-                                        <h3 class="card-title">Online Store Visitors</h3>
-                                        <a href="javascript:void(0);">View Report</a>
+                                        <h3 class="card-title">Danh sách khách hàng<span class="badge bg-danger">sinh nhật hôm nay</span></h3>
+                                        <a href="list-customer.php">Xem danh sách khách hàng</a>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <div class="d-flex">
-                                        <p class="d-flex flex-column">
-                                            <span class="text-bold text-lg">820</span>
-                                            <span>Visitors Over Time</span>
-                                        </p>
-                                        <p class="ml-auto d-flex flex-column text-right">
-                                            <span class="text-success">
-                                                <i class="fas fa-arrow-up"></i> 12.5%
-                                            </span>
-                                            <span class="text-muted">Since last week</span>
-                                        </p>
-                                    </div>
-                                    <!-- /.d-flex -->
-
-                                    <div class="position-relative mb-4">
-                                        <canvas id="visitors-chart" height="200"></canvas>
-                                    </div>
-
-                                    <div class="d-flex flex-row justify-content-end">
-                                        <span class="mr-2">
-                                            <i class="fas fa-square text-primary"></i> This Week
-                                        </span>
-
-                                        <span>
-                                            <i class="fas fa-square text-gray"></i> Last Week
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.card -->
-
-                            <div class="card">
-                                <div class="card-header border-0">
-                                    <h3 class="card-title">Products</h3>
-                                    <div class="card-tools">
-                                        <a href="#" class="btn btn-tool btn-sm">
-                                            <i class="fas fa-download"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-tool btn-sm">
-                                            <i class="fas fa-bars"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="card-body table-responsive p-0">
-                                    <table class="table table-striped table-valign-middle">
+                                <div class="card-body table-responsive p-1">
+                                <table class="table table-striped table-valign-middle">
                                         <thead>
                                             <tr>
-                                                <th>Product</th>
-                                                <th>Price</th>
-                                                <th>Sales</th>
-                                                <th>More</th>
+                                                <th>Tên Khách hàng</th>
+                                                <th>Ngày sinh</th>
+                                                <th>Điện thoại</th>
+                                                <th>Ghi chú</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <img src="dist/img/default-150x150.png" alt="Product 1"
-                                                        class="img-circle img-size-32 mr-2">
+                                                    <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
                                                     Some Product
                                                 </td>
                                                 <td>$13 USD</td>
@@ -224,60 +174,42 @@
                                                     </a>
                                                 </td>
                                             </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                        <div class="card">
+                                <div class="card-header border-1">
+                                    <div class="d-flex justify-content-between">
+                                        <h3 class="card-title">Danh sách khách hàng<span class="badge bg-warning">Sắp sinh nhật</span></h3>
+                                        <a href="list-customer.php">Xem danh sách khách hàng</a>
+                                    </div>
+                                </div>
+                                <div class="card-body table-responsive p-1">
+                                <table class="table table-striped table-valign-middle">
+                                        <thead>
                                             <tr>
-                                                <td>
-                                                    <img src="dist/img/default-150x150.png" alt="Product 1"
-                                                        class="img-circle img-size-32 mr-2">
-                                                    Another Product
-                                                </td>
-                                                <td>$29 USD</td>
-                                                <td>
-                                                    <small class="text-warning mr-1">
-                                                        <i class="fas fa-arrow-down"></i>
-                                                        0.5%
-                                                    </small>
-                                                    123,234 Sold
-                                                </td>
-                                                <td>
-                                                    <a href="#" class="text-muted">
-                                                        <i class="fas fa-search"></i>
-                                                    </a>
-                                                </td>
+                                                <th>Tên Khách hàng</th>
+                                                <th>Ngày sinh</th>
+                                                <th>Điện thoại</th>
+                                                <th>Ghi chú</th>
                                             </tr>
+                                        </thead>
+                                        <tbody>
                                             <tr>
                                                 <td>
-                                                    <img src="dist/img/default-150x150.png" alt="Product 1"
-                                                        class="img-circle img-size-32 mr-2">
-                                                    Amazing Product
+                                                    <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
+                                                    Some Product
                                                 </td>
-                                                <td>$1,230 USD</td>
-                                                <td>
-                                                    <small class="text-danger mr-1">
-                                                        <i class="fas fa-arrow-down"></i>
-                                                        3%
-                                                    </small>
-                                                    198 Sold
-                                                </td>
-                                                <td>
-                                                    <a href="#" class="text-muted">
-                                                        <i class="fas fa-search"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img src="dist/img/default-150x150.png" alt="Product 1"
-                                                        class="img-circle img-size-32 mr-2">
-                                                    Perfect Item
-                                                    <span class="badge bg-danger">NEW</span>
-                                                </td>
-                                                <td>$199 USD</td>
+                                                <td>$13 USD</td>
                                                 <td>
                                                     <small class="text-success mr-1">
                                                         <i class="fas fa-arrow-up"></i>
-                                                        63%
+                                                        12%
                                                     </small>
-                                                    87 Sold
+                                                    12,000 Sold
                                                 </td>
                                                 <td>
                                                     <a href="#" class="text-muted">
@@ -289,102 +221,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <!-- /.card -->
                         </div>
-                        <!-- /.col-md-6 -->
-                        <div class="col-lg-6">
-                            <div class="card">
-                                <div class="card-header border-0">
-                                    <div class="d-flex justify-content-between">
-                                        <h3 class="card-title">Sales</h3>
-                                        <a href="javascript:void(0);">View Report</a>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="d-flex">
-                                        <p class="d-flex flex-column">
-                                            <span class="text-bold text-lg">$18,230.00</span>
-                                            <span>Sales Over Time</span>
-                                        </p>
-                                        <p class="ml-auto d-flex flex-column text-right">
-                                            <span class="text-success">
-                                                <i class="fas fa-arrow-up"></i> 33.1%
-                                            </span>
-                                            <span class="text-muted">Since last month</span>
-                                        </p>
-                                    </div>
-                                    <!-- /.d-flex -->
-
-                                    <div class="position-relative mb-4">
-                                        <canvas id="sales-chart" height="200"></canvas>
-                                    </div>
-
-                                    <div class="d-flex flex-row justify-content-end">
-                                        <span class="mr-2">
-                                            <i class="fas fa-square text-primary"></i> This year
-                                        </span>
-
-                                        <span>
-                                            <i class="fas fa-square text-gray"></i> Last year
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.card -->
-
-                            <div class="card">
-                                <div class="card-header border-0">
-                                    <h3 class="card-title">Online Store Overview</h3>
-                                    <div class="card-tools">
-                                        <a href="#" class="btn btn-sm btn-tool">
-                                            <i class="fas fa-download"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-tool">
-                                            <i class="fas fa-bars"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
-                                        <p class="text-success text-xl">
-                                            <i class="ion ion-ios-refresh-empty"></i>
-                                        </p>
-                                        <p class="d-flex flex-column text-right">
-                                            <span class="font-weight-bold">
-                                                <i class="ion ion-android-arrow-up text-success"></i> 12%
-                                            </span>
-                                            <span class="text-muted">CONVERSION RATE</span>
-                                        </p>
-                                    </div>
-                                    <!-- /.d-flex -->
-                                    <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
-                                        <p class="text-warning text-xl">
-                                            <i class="ion ion-ios-cart-outline"></i>
-                                        </p>
-                                        <p class="d-flex flex-column text-right">
-                                            <span class="font-weight-bold">
-                                                <i class="ion ion-android-arrow-up text-warning"></i> 0.8%
-                                            </span>
-                                            <span class="text-muted">SALES RATE</span>
-                                        </p>
-                                    </div>
-                                    <!-- /.d-flex -->
-                                    <div class="d-flex justify-content-between align-items-center mb-0">
-                                        <p class="text-danger text-xl">
-                                            <i class="ion ion-ios-people-outline"></i>
-                                        </p>
-                                        <p class="d-flex flex-column text-right">
-                                            <span class="font-weight-bold">
-                                                <i class="ion ion-android-arrow-down text-danger"></i> 1%
-                                            </span>
-                                            <span class="text-muted">REGISTRATION RATE</span>
-                                        </p>
-                                    </div>
-                                    <!-- /.d-flex -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.col-md-6 -->
                     </div>
                     <!-- /.row -->
                 </div>
@@ -401,5 +238,5 @@
         <!-- /.control-sidebar -->
         <!-- Main Footer -->
         <?php
-  include('widget/footer.php');
-  ?>
+        include('widget/footer.php');
+        ?>
