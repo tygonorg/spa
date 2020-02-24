@@ -140,7 +140,7 @@ include('widget/header.php');
                             <div class="card">
                                 <div class="card-header border-1">
                                     <?php
-                                    $sql = "SELECT `id`, `name`, `phone`, `note`, DATE_FORMAT(`birthday`, '%d/%m/%Y') as `birth`, `spaid` FROM `customer` WHERE `spaid` =" . $spa['id'] . " AND DATE_FORMAT(`birthday`, '%m-%d') = DATE_FORMAT(NOW(), '%m-%d')";
+                                    $sql = "SELECT `id`, `name`, `phone`, `note`, DATE_FORMAT(`birthday`, '%d/%m/%Y') as `birth`, `spaid` FROM `customer` WHERE `spaid` =" . $spa['id'] . " AND DATE_FORMAT(`birthday`, '%m-%d') = DATE_FORMAT(NOW(), '%m-%d') AND deleted =0";
                                     $connect = mysql_connect($mysqlserver, $mysqluser, $mysqlpass);
                                     mysql_select_db($mysqldb, $connect);
                                     mysql_query("set names 'utf8'");

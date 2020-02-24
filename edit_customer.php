@@ -3,10 +3,28 @@ $titles = 'Thêm mới Khách hàng';
 include('config.php');
 include('widget/header.php');
 include('lib/utility.php');
+$id = $_GET['id'];
 $cus_name = "";
 $cus_phone = "";
 $cus_birth = "";
 $cus_note = "";
+
+$conn = mysql_connect($mysqlserver, $mysqluser, $mysqlpass);
+mysql_select_db($mysqldb, $conn);
+if (!$conn) {
+    die("Connection failed: "  . mysql_error());
+}
+mysql_query("set names 'utf8'");
+$sql = "SELECT `id`, `name`, `phone`, `note`, DATE_FORMAT(`birthday`, '%d/%m/%Y') as `birth`, `spaid`, `deleted` FROM `customer` WHERE deleted = 0 and `id` = " . mysql_real_escape_string($id). " and `spaid` = ".mysql_real_escape_string($spa['id']);
+$result = mysql_query($sql, $conn);
+while ($row = mysql_fetch_assoc($result)) {
+    $cus_name = $row['name'];
+    $cus_phone = $row['phone'];
+    $cus_birth = $row['birth'];
+    $cus_note = $row['note'];
+}
+
+
 
 $check_name = true; // check cus_name
 $check_name_mess = "";
@@ -16,6 +34,7 @@ $check_phone_mess = "";
 // check date
 $check_birth = true;
 $check_birth_mess = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cus_name = $_POST["cus_name"];
     $cus_phone = $_POST["cus_phone"];
@@ -55,14 +74,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         mysql_query("set names 'utf8'");
         $sql = sprintf(
-            "INSERT INTO `customer`(`name`, `phone`, `note`, `birthday`, `spaid`) VALUES ('%s', '%s','%s','%s','%s');",
+            "UPDATE `customer` set `name` ='%s', `phone`='%s', `note`='%s', `birthday`= '%s' where `id` = %s and `spaid`= %s and deleted = 0",
             mysql_real_escape_string($cus_name),
             mysql_real_escape_string($cus_phone),
             mysql_real_escape_string($cus_note),
             mysql_real_escape_string($date_format_cus),
+            mysql_real_escape_string($id),
             mysql_real_escape_string($spa['id'])
 
         );
+        var_dump($sql);
         $result = mysql_query($sql, $conn);
         if ($result) {
             $droadLink = 'list-customer.php';
@@ -112,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="container-fluid">
                     <div class="row">
                         <div class="card-body">
-                            <form role="form" method="post" action="addnew-customer.php">
+                            <form role="form" method="post" action="edit_customer.php?id=<?php echo($id); ?>">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <!-- text input -->
@@ -161,7 +182,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <button type="submit" class="btn btn-primary float-left">Thêm</button>
+                                        <button type="submit" class="btn btn-primary float-left">Cập nhật</button>
                                     </div>
                                     <div class="col-sm-4">
                                         <a href="list-customer.php" class="btn btn-danger float-right">Hủy</a>

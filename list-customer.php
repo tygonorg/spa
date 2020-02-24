@@ -83,8 +83,8 @@ include('widget/header.php');
                                                 $pages = 0;
                                             }
                                             $start = $number_page * $pages;
-                                            $sql = "SELECT `id`, `name`, `phone`, `note`, DATE_FORMAT(`birthday`, '%d/%m/%Y') as `birth`, `spaid`, DATE_FORMAT(`birthday`, '%m-%d') = DATE_FORMAT(NOW(), '%m-%d') as `b`,DATE_FORMAT(`birthday`, '%m-%d') >= DATE_FORMAT(NOW(), '%m-%d') and DATE_FORMAT(`birthday`, '%m-%d') <= DATE_FORMAT((NOW() + INTERVAL +1 DAY), '%m-%d') as `n`, DATE_FORMAT(`birthday`, '%m-%d') >= DATE_FORMAT(NOW(), '%m-%d') and DATE_FORMAT(`birthday`, '%m-%d') <= DATE_FORMAT((NOW() + INTERVAL +7 DAY), '%m-%d') as `s` FROM `customer` WHERE `spaid` =" . $spa['id'] . " ORDER BY `b` DESC ,`n` DESC, s DESC limit $start,$number_page";
-                                            $sqlcount = "SELECT COUNT(*) AS `c` FROM `customer` WHERE `spaid` =" . $spa['id'] . " ORDER BY `id` DESC";
+                                            $sql = "SELECT `id`, `name`, `phone`, `note`, DATE_FORMAT(`birthday`, '%d/%m/%Y') as `birth`, `spaid`, DATE_FORMAT(`birthday`, '%m-%d') = DATE_FORMAT(NOW(), '%m-%d') as `b`,DATE_FORMAT(`birthday`, '%m-%d') >= DATE_FORMAT(NOW(), '%m-%d') and DATE_FORMAT(`birthday`, '%m-%d') <= DATE_FORMAT((NOW() + INTERVAL +1 DAY), '%m-%d') as `n`, DATE_FORMAT(`birthday`, '%m-%d') >= DATE_FORMAT(NOW(), '%m-%d') and DATE_FORMAT(`birthday`, '%m-%d') <= DATE_FORMAT((NOW() + INTERVAL +7 DAY), '%m-%d') as `s` FROM `customer` WHERE `spaid` =" . $spa['id'] . " AND deleted =0 ORDER BY `b` DESC ,`n` DESC, s DESC limit $start,$number_page";
+                                            $sqlcount = "SELECT COUNT(*) AS `c` FROM `customer` WHERE `spaid` =" . $spa['id'] . " AND deleted =0 ORDER BY `id` DESC";
                                             $connect = mysql_connect($mysqlserver, $mysqluser, $mysqlpass);
                                             mysql_select_db($mysqldb, $connect);
                                             mysql_query("set names 'utf8'");
@@ -113,17 +113,17 @@ include('widget/header.php');
                                                     </td>
                                                     
                                                     <td class="project-actions text-right">
-                                                        <a class="btn btn-primary btn-sm" href="#">
+                                                        <a class="btn btn-primary btn-sm" href="view_customer.php?id=<?php echo($row['id']); ?>">
                                                             <i class="fas fa-folder">
                                                             </i>
                                                             Xem
                                                         </a>
-                                                        <a class="btn btn-info btn-sm" href="#">
+                                                        <a class="btn btn-info btn-sm" href="edit_customer.php?id=<?php echo($row['id']); ?>">
                                                             <i class="fas fa-pencil-alt">
                                                             </i>
                                                             Sửa
                                                         </a>
-                                                        <a class="btn btn-danger btn-sm" href="#">
+                                                        <a class="btn btn-danger btn-sm" href="delete_customer.php?id=<?php echo($row['id']); ?>">
                                                             <i class="fas fa-trash">
                                                             </i>
                                                             Xóa
