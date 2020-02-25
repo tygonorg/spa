@@ -2,7 +2,7 @@
 $titles = 'Khách hàng';
 include('config.php');
 include('widget/header.php');
-$search = $_GET['search'];
+$search = $_GET["search"];
 if ($search == "") {
     $droadLink = 'list-customer.php';
     header('Location: ' . $droadLink);
@@ -88,12 +88,13 @@ if ($search == "") {
                                             } else {
                                                 $pages = 0;
                                             }
-                                            $start = $number_page * $pages;
-                                            $sql = "SELECT `id`, `name`, `phone`, `note`, DATE_FORMAT(`birthday`, '%d/%m/%Y') as `birth`, `spaid`, DATE_FORMAT(`birthday`, '%m-%d') = DATE_FORMAT(NOW(), '%m-%d') as `b`,DATE_FORMAT(`birthday`, '%m-%d') >= DATE_FORMAT(NOW(), '%m-%d') and DATE_FORMAT(`birthday`, '%m-%d') <= DATE_FORMAT((NOW() + INTERVAL +1 DAY), '%m-%d') as `n`, DATE_FORMAT(`birthday`, '%m-%d') >= DATE_FORMAT(NOW(), '%m-%d') and DATE_FORMAT(`birthday`, '%m-%d') <= DATE_FORMAT((NOW() + INTERVAL +7 DAY), '%m-%d') as `s` FROM `customer` WHERE `spaid` =" . $spa['id'] . " AND deleted =0 AND (`name` like '%". mysql_real_escape_string($search) ."%' OR `phone` like '%". mysql_real_escape_string($search) ."%' OR `note` like '%".mysql_real_escape_string($search)."%' ) ORDER BY `b` DESC ,`n` DESC, s DESC limit $start,$number_page";
-                                            $sqlcount = "SELECT COUNT(*) AS `c` FROM `customer` WHERE `spaid` =" . $spa['id'] . " AND deleted =0 AND (`name` like '%". mysql_real_escape_string($search) ."%' OR `phone` like '%". mysql_real_escape_string($search) ."%' OR `note` like '%".mysql_real_escape_string($search)."%' ) ORDER BY `id` DESC";
                                             $connect = mysql_connect($mysqlserver, $mysqluser, $mysqlpass);
                                             mysql_select_db($mysqldb, $connect);
                                             mysql_query("set names 'utf8'");
+                                            $start = $number_page * $pages;
+                                            $sql = "SELECT `id`, `name`, `phone`, `note`, DATE_FORMAT(`birthday`, '%d/%m/%Y') as `birth`, `spaid`, DATE_FORMAT(`birthday`, '%m-%d') = DATE_FORMAT(NOW(), '%m-%d') as `b`,DATE_FORMAT(`birthday`, '%m-%d') >= DATE_FORMAT(NOW(), '%m-%d') and DATE_FORMAT(`birthday`, '%m-%d') <= DATE_FORMAT((NOW() + INTERVAL +1 DAY), '%m-%d') as `n`, DATE_FORMAT(`birthday`, '%m-%d') >= DATE_FORMAT(NOW(), '%m-%d') and DATE_FORMAT(`birthday`, '%m-%d') <= DATE_FORMAT((NOW() + INTERVAL +7 DAY), '%m-%d') as `s` FROM `customer` WHERE `spaid` =" . $spa['id'] . " AND deleted =0 AND (`name` like '%". mysql_real_escape_string($search) ."%' OR `phone` like '%". mysql_real_escape_string($search) ."%' OR `note` like '%".mysql_real_escape_string($search)."%' ) ORDER BY `b` DESC ,`n` DESC, s DESC limit $start,$number_page";
+                                            $sqlcount = "SELECT COUNT(*) AS `c` FROM `customer` WHERE `spaid` =" . $spa['id'] . " AND deleted =0 AND (`name` like '%". mysql_real_escape_string($search) ."%' OR `phone` like '%". mysql_real_escape_string($search) ."%' OR `note` like '%".mysql_real_escape_string($search)."%' ) ORDER BY `id` DESC";
+
                                             $result = mysql_query($sql, $connect);
                                             $result1 = mysql_query($sqlcount, $connect);
                                             $row1 = mysql_fetch_assoc($result1);
