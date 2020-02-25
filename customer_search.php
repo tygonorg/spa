@@ -2,6 +2,11 @@
 $titles = 'Khách hàng';
 include('config.php');
 include('widget/header.php');
+$search = $_GET['search'];
+if ($search == "") {
+    $droadLink = 'list-customer.php';
+    header('Location: ' . $droadLink);
+}
 ?>
 
 <body class="hold-transition sidebar-mini">
@@ -48,9 +53,9 @@ include('widget/header.php');
                                     <h3 class="card-title">Danh sách khách hàng</h3>
 
                                     <div class="card-tools">
-                                        <form class="input-group input-group-sm" style="width: 250px;" method ="GET" action="customer_search.php">
+                                        <form class="input-group input-group-sm" style="width: 250px;" method="GET" action="customer_search.php">
 
-                                            <input type="text" name="search" class="form-control input-group-append" placeholder="Tìm kiếm">
+                                            <input type="text" name="search" class="form-control input-group-append" value="<?php echo ($search); ?>" placeholder="Tìm kiếm">
 
                                             <div class="input-group-append">
                                                 <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
@@ -84,8 +89,8 @@ include('widget/header.php');
                                                 $pages = 0;
                                             }
                                             $start = $number_page * $pages;
-                                            $sql = "SELECT `id`, `name`, `phone`, `note`, DATE_FORMAT(`birthday`, '%d/%m/%Y') as `birth`, `spaid`, DATE_FORMAT(`birthday`, '%m-%d') = DATE_FORMAT(NOW(), '%m-%d') as `b`,DATE_FORMAT(`birthday`, '%m-%d') >= DATE_FORMAT(NOW(), '%m-%d') and DATE_FORMAT(`birthday`, '%m-%d') <= DATE_FORMAT((NOW() + INTERVAL +1 DAY), '%m-%d') as `n`, DATE_FORMAT(`birthday`, '%m-%d') >= DATE_FORMAT(NOW(), '%m-%d') and DATE_FORMAT(`birthday`, '%m-%d') <= DATE_FORMAT((NOW() + INTERVAL +7 DAY), '%m-%d') as `s` FROM `customer` WHERE `spaid` =" . $spa['id'] . " AND deleted =0 ORDER BY `b` DESC ,`n` DESC, s DESC limit $start,$number_page";
-                                            $sqlcount = "SELECT COUNT(*) AS `c` FROM `customer` WHERE `spaid` =" . $spa['id'] . " AND deleted =0 ORDER BY `id` DESC";
+                                            $sql = "SELECT `id`, `name`, `phone`, `note`, DATE_FORMAT(`birthday`, '%d/%m/%Y') as `birth`, `spaid`, DATE_FORMAT(`birthday`, '%m-%d') = DATE_FORMAT(NOW(), '%m-%d') as `b`,DATE_FORMAT(`birthday`, '%m-%d') >= DATE_FORMAT(NOW(), '%m-%d') and DATE_FORMAT(`birthday`, '%m-%d') <= DATE_FORMAT((NOW() + INTERVAL +1 DAY), '%m-%d') as `n`, DATE_FORMAT(`birthday`, '%m-%d') >= DATE_FORMAT(NOW(), '%m-%d') and DATE_FORMAT(`birthday`, '%m-%d') <= DATE_FORMAT((NOW() + INTERVAL +7 DAY), '%m-%d') as `s` FROM `customer` WHERE `spaid` =" . $spa['id'] . " AND deleted =0 AND (`name` like '%". mysql_real_escape_string($search) ."%' OR `phone` like '%". mysql_real_escape_string($search) ."%' OR `note` like '%".mysql_real_escape_string($search)."%' ) ORDER BY `b` DESC ,`n` DESC, s DESC limit $start,$number_page";
+                                            $sqlcount = "SELECT COUNT(*) AS `c` FROM `customer` WHERE `spaid` =" . $spa['id'] . " AND deleted =0 AND (`name` like '%". mysql_real_escape_string($search) ."%' OR `phone` like '%". mysql_real_escape_string($search) ."%' OR `note` like '%".mysql_real_escape_string($search)."%' ) ORDER BY `id` DESC";
                                             $connect = mysql_connect($mysqlserver, $mysqluser, $mysqlpass);
                                             mysql_select_db($mysqldb, $connect);
                                             mysql_query("set names 'utf8'");
@@ -159,7 +164,7 @@ include('widget/header.php');
                                         for ($i = 0; $i < $total; $i++) { ?>
                                             <li class="paginate_button page-item<?php if ($i == $pages) {
                                                                                     echo 'active';
-                                                                                } ?>"><a href="list-customer.php?page=<?php echo $i; ?>" aria-controls="dataTable" class="page-link"><?php echo ($i + 1); ?></a></li>
+                                                                                } ?>"><a href="customer_search.php?page=<?php echo $i; ?>&search=<?php echo($search); ?>" aria-controls="dataTable" class="page-link"><?php echo ($i + 1); ?></a></li>
                                     <?php }
                                     } ?>
                                 </ul>
