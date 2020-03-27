@@ -77,7 +77,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="./listdichvu.php" class="nav-link">
                   <i class="far fa-plus-square nav-icon text-warning"></i>
                   <p>Danh sách Dịch Vụ</p>
                 </a>
